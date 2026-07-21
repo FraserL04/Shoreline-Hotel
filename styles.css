@@ -25,6 +25,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: var(--color-bg);
@@ -41,7 +45,6 @@ img {
 a {
   text-decoration: none;
   color: inherit;
-  font-family: "Jacques Francois", serif;
 }
 
 .container {
@@ -49,12 +52,36 @@ a {
   margin: 0 auto;
 }
 
+/* =======================
+   Announcement Bar
+======================= */
+
+.announcement-bar {
+  background: var(--color-dark);
+  color: var(--color-white);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-family: "Jacques Francois", serif;
+}
+
+/* =======================
+   Typography
+======================= */
+
 h1,
 h2,
 h3 {
   font-family: "Marcellus SC", serif;
   letter-spacing: 0.06em;
   margin-top: 0;
+}
+
+h1,
+h2 {
+  text-transform: uppercase;
 }
 
 h1 {
@@ -73,10 +100,11 @@ h3 {
 }
 
 p,
-label,
 input,
 textarea,
-li {
+label,
+li,
+a {
   font-family: "Jacques Francois", serif;
 }
 
@@ -84,10 +112,11 @@ li {
   font-family: "Wittgenstein", serif;
   font-style: italic;
   font-size: 20px;
-  margin-bottom: var(--space-lg);
+  line-height: 1.5;
 }
 
-button {
+button,
+.nav-book-btn {
   background: var(--color-accent);
   color: var(--color-white);
   border: none;
@@ -100,6 +129,10 @@ button {
   cursor: pointer;
 }
 
+/* =======================
+   Header
+======================= */
+
 header {
   background: var(--color-primary);
 }
@@ -109,58 +142,188 @@ nav {
   margin: 0 auto;
   padding: var(--space-sm) var(--space-3xl);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 32px;
 }
 
-.logo a,
-.nav-links a {
+/* =======================
+   Logo
+======================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   color: var(--color-white);
 }
 
-.logo a {
-  font-family: "Jacques Francois", serif;
+.logo-icon {
+  width: 56px;
+  height: 56px;
 }
+
+.logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-icon text {
+  fill: currentColor;
+  font-family: "Marcellus SC", serif;
+  font-size: 22px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  color: var(--color-white);
+  font-family: "Marcellus SC", serif;
+  font-size: 20px;
+  letter-spacing: 0.12em;
+}
+
+.logo-subtitle {
+  color: var(--color-muted);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* =======================
+   Navigation
+======================= */
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: var(--space-xl);
   list-style: none;
+  margin-left: auto;
+  padding: 0;
 }
+
+.nav-links a {
+  color: var(--color-white);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nav-book-btn {
+  display: inline-block;
+}
+
+/* =======================
+   Hero
+======================= */
 
 #hero {
   background: var(--color-primary);
   color: var(--color-white);
-  text-align: center;
   padding: 96px var(--space-3xl) 112px;
+}
+
+.hero-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 64px;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  margin-bottom: var(--space-lg);
+}
+
+.hero-line {
+  width: 48px;
+  height: 1px;
+  background: var(--color-white);
 }
 
 #hero h1 {
   color: var(--color-white);
+  margin-bottom: var(--space-lg);
 }
 
-section:not(#hero):not(#events) {
-  background: var(--color-bg);
+.hero-divider {
+  width: 120px;
+  margin: 0 0 var(--space-lg);
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,.4);
 }
+
+#hero .tagline {
+  color: var(--color-white);
+  margin-bottom: var(--space-xl);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.outline-button {
+  background: transparent;
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+}
+
+.hero-emblem {
+  width: 220px;
+  height: 220px;
+  color: var(--color-white);
+  flex-shrink: 0;
+}
+
+.hero-emblem svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* =======================
+   Sections
+======================= */
 
 #rooms,
 #dining,
 #spa,
 #gallery,
+#about,
 #testimonials,
 #contact {
+  background: var(--color-bg);
   padding: var(--space-2xl) var(--space-3xl);
 }
 
-.rooms-grid,
-.testimonials-grid {
+.section-intro {
+  max-width: 720px;
+}
+
+/* =======================
+   Room Cards
+======================= */
+
+.rooms-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
 }
 
-.room-card,
-.testimonial-card {
+.room-card {
   background: var(--color-white);
   padding: var(--space-lg);
   border-radius: 4px;
@@ -173,6 +336,7 @@ section:not(#hero):not(#events) {
 
 .price {
   color: var(--color-accent);
+  font-size: 18px;
 }
 
 .button-group {
@@ -186,12 +350,20 @@ section:not(#hero):not(#events) {
   margin-top: var(--space-xl);
 }
 
+/* =======================
+   Dining
+======================= */
+
 .dining-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-xl);
   align-items: center;
 }
+
+/* =======================
+   Spa
+======================= */
 
 .spa-grid {
   display: grid;
@@ -213,6 +385,10 @@ section:not(#hero):not(#events) {
   height: 238px;
 }
 
+/* =======================
+   Events
+======================= */
+
 #events {
   background: var(--color-primary);
   color: var(--color-white);
@@ -226,7 +402,12 @@ section:not(#hero):not(#events) {
 
 .events-content {
   max-width: 800px;
+  margin: 0 auto;
 }
+
+/* =======================
+   Gallery
+======================= */
 
 .gallery-grid {
   display: grid;
@@ -234,9 +415,13 @@ section:not(#hero):not(#events) {
   gap: var(--space-md);
 }
 
+/* =======================
+   Image Placeholders
+======================= */
+
 .image-placeholder,
-.map-placeholder,
-.large-image {
+.large-image,
+.map-placeholder {
   background: var(--color-placeholder);
   border-radius: 4px;
 }
@@ -248,6 +433,43 @@ section:not(#hero):not(#events) {
 .large-image {
   min-height: 420px;
 }
+
+.map-placeholder {
+  min-height: 420px;
+}
+
+/* =======================
+   Testimonials
+======================= */
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.testimonial-card {
+  background: var(--color-white);
+  padding: var(--space-xl);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+blockquote {
+  margin: 0 0 var(--space-md);
+}
+
+.guest-name {
+  color: var(--color-muted);
+}
+
+.star-rating {
+  color: var(--color-accent);
+}
+
+/* =======================
+   Contact
+======================= */
 
 .contact-layout {
   display: grid;
@@ -261,35 +483,23 @@ form {
   gap: var(--space-lg);
 }
 
-input,
-textarea {
-  width: 100%;
-  padding: var(--space-md);
-  border: 1px solid var(--color-border);
-  background: var(--color-white);
-}
-
 label {
   display: block;
   margin-bottom: var(--space-sm);
 }
 
-.map-placeholder {
-  min-height: 420px;
+input,
+textarea {
+  width: 100%;
+  padding: var(--space-md);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  font-family: inherit;
 }
 
-blockquote {
-  margin: 0 0 var(--space-md);
-  font-family: "Jacques Francois", serif;
-}
-
-.guest-name {
-  color: var(--color-muted);
-}
-
-.star-rating {
-  color: var(--color-accent);
-}
+/* =======================
+   Footer
+======================= */
 
 footer {
   background: var(--color-dark);
@@ -315,10 +525,14 @@ footer {
   padding: 0;
 }
 
+.footer-links a {
+  color: var(--color-white);
+}
+
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.1);
   text-align: center;
   padding: var(--space-lg);
+  border-top: 1px solid rgba(255,255,255,.1);
 }
 
 .footer-bottom p {
