@@ -405,6 +405,26 @@ nav {
   margin: 0 auto;
 }
 
+.events-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.events-divider {
+  width: 120px;
+  margin: var(--space-md) auto;
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,.4);
+}
+
+.events-buttons {
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
+
 /* =======================
    Gallery
 ======================= */
@@ -510,8 +530,8 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-3xl);
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
   gap: var(--space-xl);
 }
 
@@ -529,12 +549,76 @@ footer {
   color: var(--color-white);
 }
 
+.footer-brand .logo-title {
+  display: block;
+}
+
+.footer-address {
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: var(--space-sm);
+}
+
+.footer-col h3 {
+  color: var(--color-white);
+  font-family: "Jacques Francois", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  margin-bottom: var(--space-md);
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col a {
+  color: var(--color-white);
+}
+
+.footer-col p {
+  color: var(--color-muted);
+  font-size: 13px;
+  margin: 0 0 var(--space-sm);
+}
+
+.footer-follow {
+  margin-top: var(--space-lg);
+}
+
+.footer-social {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.footer-social a {
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--color-white);
+}
+
 .footer-bottom {
-  text-align: center;
-  padding: var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg) var(--space-3xl);
   border-top: 1px solid rgba(255,255,255,.1);
 }
 
 .footer-bottom p {
+  margin: 0;
+}
+
+.footer-collection {
+  color: var(--color-muted);
+  font-size: 12px;
   margin: 0;
 }
