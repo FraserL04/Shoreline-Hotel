@@ -668,7 +668,7 @@ footer {
 }
 
 /* =========================================================
-   LAYER 4 — FIGMA MATCH REFINEMENTS
+   LAYER 4 â€” FIGMA MATCH REFINEMENTS
    New pieces added to match the Figma design.
 ========================================================= */
 
@@ -782,7 +782,7 @@ footer {
 }
 
 /* =========================================================
-   POLISH — hover states, back to top, scroll progress bar
+   POLISH â€” hover states, back to top, scroll progress bar
 ========================================================= */
 
 /* Smooth transitions on anything interactive */
@@ -866,7 +866,7 @@ button:hover,
   filter: brightness(0.94);
 }
 
-/* Scroll progress bar — fixed to the very top of the page */
+/* Scroll progress bar â€” fixed to the very top of the page */
 
 #scroll-progress {
   position: fixed;
@@ -916,11 +916,11 @@ button:hover,
 }
 
 /* =========================================================
-   LAYER 3 — RESPONSIVE + HAMBURGER NAV
+   LAYER 3 â€” RESPONSIVE + HAMBURGER NAV
    Everything below is the mobile and tablet behaviour.
 ========================================================= */
 
-/* Hamburger toggle button — hidden on desktop, shown on mobile */
+/* Hamburger toggle button â€” hidden on desktop, shown on mobile */
 
 .nav-toggle {
   display: none;
@@ -972,7 +972,7 @@ button:hover,
 }
 
 /* =======================
-   MOBILE (max-width 480px — covers real phones, tested at 375px)
+   MOBILE (max-width 480px â€” covers real phones, tested at 375px)
 ======================= */
 
 @media (max-width: 480px) {
