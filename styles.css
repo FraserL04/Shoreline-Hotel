@@ -126,6 +126,7 @@ button,
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
@@ -648,8 +649,122 @@ footer {
 }
 
 /* =========================================================
+   LAYER 4 — FIGMA MATCH REFINEMENTS
+   New pieces added to match the Figma design.
+========================================================= */
+
+/* Small gold label that sits above each section heading */
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+/* Cream quote band under the hero */
+
+#quote-band {
+  background: var(--color-bg);
+  text-align: center;
+  padding: var(--space-2xl) var(--space-3xl);
+}
+
+.quote-band-label {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 10px;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-md);
+}
+
+.quote-band-text {
+  font-family: "Wittgenstein", serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--color-primary);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Corner badges on the room cards */
+
+.room-card .image-placeholder {
+  position: relative;
+}
+
+.room-badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 2px;
+}
+
+/* Buttons that sit under section text */
+
+.section-btn {
+  margin-top: var(--space-lg);
+}
+
+/* Outline button for use on light (cream) backgrounds */
+
+.outline-dark {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Weddings & Events section (navy band) */
+
+#weddings {
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-align: center;
+  padding: 96px var(--space-3xl);
+}
+
+#weddings h2 {
+  color: var(--color-white);
+}
+
+.weddings-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.weddings-content .section-label {
+  color: var(--color-accent);
+}
+
+.weddings-buttons {
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
+
+/* Testimonial location line */
+
+.testimonial-card .star-rating {
+  margin-bottom: var(--space-md);
+}
+
+.guest-location {
+  color: var(--color-muted);
+  font-size: 12px;
+  margin: 0;
+}
+
+/* =========================================================
    LAYER 3 — RESPONSIVE + HAMBURGER NAV
-   Everything below is new. Desktop layout above is untouched.
+   Everything below is the mobile and tablet behaviour.
 ========================================================= */
 
 /* Hamburger toggle button — hidden on desktop, shown on mobile */
@@ -802,11 +917,13 @@ footer {
   #dining,
   #spa,
   #gallery,
-  #testimonials {
+  #testimonials,
+  #quote-band {
     padding: var(--space-lg);
   }
 
-  #events {
+  #events,
+  #weddings {
     padding: var(--space-2xl) var(--space-lg);
   }
 
