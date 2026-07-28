@@ -646,3 +646,223 @@ footer {
   font-size: 12px;
   margin: 0;
 }
+
+/* =========================================================
+   LAYER 3 — RESPONSIVE + HAMBURGER NAV
+   Everything below is new. Desktop layout above is untouched.
+========================================================= */
+
+/* Hamburger toggle button — hidden on desktop, shown on mobile */
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--color-accent);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* =======================
+   TABLET (max-width 768px)
+======================= */
+
+@media (max-width: 768px) {
+
+  /* Let the full nav wrap instead of overflowing, no hamburger yet */
+  nav {
+    flex-wrap: wrap;
+    padding: var(--space-sm) var(--space-lg);
+  }
+
+  /* Room cards and testimonials drop to 2 columns */
+  .rooms-grid,
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Footer eases from 4 columns to 2 */
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+/* =======================
+   MOBILE (max-width 375px)
+======================= */
+
+@media (max-width: 375px) {
+
+  /* --- Navigation collapses to a hamburger menu --- */
+
+  nav {
+    flex-wrap: wrap;
+    padding: var(--space-sm) var(--space-lg);
+    gap: var(--space-md);
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links,
+  .nav-book-btn {
+    display: none;
+  }
+
+  nav.nav-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    gap: var(--space-md);
+    margin-left: 0;
+    padding: var(--space-md) 0 0;
+  }
+
+  nav.nav-open .nav-book-btn {
+    display: inline-block;
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  /* Hamburger lines animate into an X when the menu is open */
+  nav.nav-open .nav-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  nav.nav-open .nav-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  nav.nav-open .nav-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* --- Hero stacks vertically and centres --- */
+
+  #hero {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .hero-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-xl);
+  }
+
+  .hero-label {
+    justify-content: center;
+  }
+
+  .hero-divider {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-emblem {
+    width: 140px;
+    height: 140px;
+  }
+
+  #hero h1 {
+    font-size: 44px;
+  }
+
+  /* --- Section headings shrink --- */
+
+  h2 {
+    font-size: 28px;
+  }
+
+  /* --- Section padding reduces to 24px --- */
+
+  #rooms,
+  #dining,
+  #spa,
+  #gallery,
+  #testimonials {
+    padding: var(--space-lg);
+  }
+
+  #events {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  /* --- Cards collapse to a single column --- */
+
+  .rooms-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Card inner padding reduces to 16px --- */
+
+  .room-card,
+  .testimonial-card {
+    padding: var(--space-md);
+  }
+
+  .button-group {
+    flex-wrap: wrap;
+  }
+
+  /* --- Dining and spa stack into one column --- */
+
+  .dining-layout,
+  .spa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spa-large {
+    height: 300px;
+  }
+
+  /* --- Gallery becomes a single column --- */
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .gallery-grid .image-placeholder:nth-child(n) {
+    height: 200px;
+  }
+
+  /* --- Footer stacks vertically --- */
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+    padding: var(--space-lg);
+  }
+
+}
