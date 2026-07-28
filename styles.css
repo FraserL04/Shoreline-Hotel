@@ -475,20 +475,20 @@ nav {
 
 /* Real photos dropped into each placeholder slot */
 
-.room-img-deluxe   { background-image: url('images/deluxe-king-room.jpg'); }
-.room-img-junior   { background-image: url('images/junior-suite-room.jpg'); }
-.room-img-penthouse{ background-image: url('images/penthouse-suite-room.jpg'); }
+.room-img-deluxe   { background-image: url('deluxe-king-room.jpg'); }
+.room-img-junior   { background-image: url('junior-suite-room.jpg'); }
+.room-img-penthouse{ background-image: url('penthouse-suite-room.jpg'); }
 
-.img-dining     { background-image: url('images/dining-terrace.jpg'); }
-.img-spa-large  { background-image: url('images/spa-poolside.jpg'); }
-.img-spa-small-1{ background-image: url('images/spa-sunset-lounge.jpg'); }
-.img-spa-small-2{ background-image: url('images/spa-stingray-lagoon.jpg'); }
+.img-dining     { background-image: url('dining-terrace.jpg'); }
+.img-spa-large  { background-image: url('spa-poolside.jpg'); }
+.img-spa-small-1{ background-image: url('spa-sunset-lounge.jpg'); }
+.img-spa-small-2{ background-image: url('spa-stingray-lagoon.jpg'); }
 
-.img-gallery-1 { background-image: url('images/gallery-resort-loungers.jpg'); }
-.img-gallery-2 { background-image: url('images/gallery-aerial-beach.jpg'); }
-.img-gallery-3 { background-image: url('images/gallery-sunset-poolside.jpg'); }
-.img-gallery-4 { background-image: url('images/gallery-night-pool.jpg'); }
-.img-gallery-5 { background-image: url('images/gallery-bedside-lamp.jpg'); }
+.img-gallery-1 { background-image: url('gallery-resort-loungers.jpg'); }
+.img-gallery-2 { background-image: url('gallery-aerial-beach.jpg'); }
+.img-gallery-3 { background-image: url('gallery-sunset-poolside.jpg'); }
+.img-gallery-4 { background-image: url('gallery-night-pool.jpg'); }
+.img-gallery-5 { background-image: url('gallery-bedside-lamp.jpg'); }
 
 .image-placeholder {
   min-height: 240px;
@@ -668,7 +668,7 @@ footer {
 }
 
 /* =========================================================
-   LAYER 4 â€” FIGMA MATCH REFINEMENTS
+   LAYER 4 — FIGMA MATCH REFINEMENTS
    New pieces added to match the Figma design.
 ========================================================= */
 
@@ -782,7 +782,7 @@ footer {
 }
 
 /* =========================================================
-   POLISH â€” hover states, back to top, scroll progress bar
+   POLISH — hover states, back to top, scroll progress bar
 ========================================================= */
 
 /* Smooth transitions on anything interactive */
@@ -866,7 +866,7 @@ button:hover,
   filter: brightness(0.94);
 }
 
-/* Scroll progress bar â€” fixed to the very top of the page */
+/* Scroll progress bar — fixed to the very top of the page */
 
 #scroll-progress {
   position: fixed;
@@ -916,11 +916,11 @@ button:hover,
 }
 
 /* =========================================================
-   LAYER 3 â€” RESPONSIVE + HAMBURGER NAV
+   LAYER 3 — RESPONSIVE + HAMBURGER NAV
    Everything below is the mobile and tablet behaviour.
 ========================================================= */
 
-/* Hamburger toggle button â€” hidden on desktop, shown on mobile */
+/* Hamburger toggle button — hidden on desktop, shown on mobile */
 
 .nav-toggle {
   display: none;
@@ -972,7 +972,7 @@ button:hover,
 }
 
 /* =======================
-   MOBILE (max-width 480px â€” covers real phones, tested at 375px)
+   MOBILE (max-width 480px — covers real phones, tested at 375px)
 ======================= */
 
 @media (max-width: 480px) {
@@ -1136,4 +1136,3 @@ button:hover,
   }
 
 }
-
