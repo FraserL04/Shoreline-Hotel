@@ -763,6 +763,140 @@ footer {
 }
 
 /* =========================================================
+   POLISH — hover states, back to top, scroll progress bar
+========================================================= */
+
+/* Smooth transitions on anything interactive */
+
+button,
+.nav-book-btn,
+.nav-links a,
+.footer-col a,
+.footer-social a,
+.room-card,
+.testimonial-card,
+.image-placeholder {
+  transition: all 0.25s ease;
+}
+
+/* Buttons lift slightly and darken on hover */
+
+button:hover,
+.nav-book-btn:hover {
+  background: #a8752f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+
+.outline-button:hover {
+  background: rgba(255,255,255,.12);
+  border-color: var(--color-white);
+}
+
+.outline-dark:hover {
+  background: rgba(44,66,80,.08);
+}
+
+/* Nav links get an underline that grows in on hover */
+
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--color-accent);
+}
+
+/* Footer links brighten on hover */
+
+.footer-col a:hover {
+  color: var(--color-accent);
+}
+
+.footer-social a:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Cards lift on hover */
+
+.room-card:hover,
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+}
+
+/* Image placeholders darken slightly on hover, like a real photo would */
+
+.image-placeholder:hover {
+  filter: brightness(0.94);
+}
+
+/* Scroll progress bar — fixed to the very top of the page */
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--color-accent);
+  z-index: 1000;
+}
+
+/* Back to top button */
+
+#back-to-top {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all 0.3s ease;
+  z-index: 999;
+  padding: 0;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#back-to-top:hover {
+  background: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.2);
+}
+
+/* =========================================================
    LAYER 3 — RESPONSIVE + HAMBURGER NAV
    Everything below is the mobile and tablet behaviour.
 ========================================================= */
@@ -819,10 +953,10 @@ footer {
 }
 
 /* =======================
-   MOBILE (max-width 375px)
+   MOBILE (max-width 480px — covers real phones, tested at 375px)
 ======================= */
 
-@media (max-width: 375px) {
+@media (max-width: 480px) {
 
   /* --- Navigation collapses to a hamburger menu --- */
 
