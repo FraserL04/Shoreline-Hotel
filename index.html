@@ -69,6 +69,14 @@
 
     <section id="hero">
 
+      <div class="hero-slides" aria-hidden="true">
+        <div class="hero-slide active" style="background-image:url('images/gallery-sunset-poolside.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/gallery-night-pool.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/spa-poolside.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/dining-terrace.jpg')"></div>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
       <div class="container hero-layout">
 
         <div class="hero-content">
@@ -117,7 +125,7 @@
 
       <div class="container">
         <p class="quote-band-label">SHORELINE HARBOUR &amp; HOTEL</p>
-        <p class="quote-band-text">
+        <p class="quote-band-text reveal">
           "A sanctuary where coastal elegance meets timeless hospitality."
         </p>
       </div>
@@ -131,9 +139,9 @@
         <div class="section-label">Accommodation</div>
         <h2>Rooms & Suites</h2>
 
-        <div class="rooms-grid">
+        <div class="rooms-grid reveal-grid">
 
-          <article class="room-card">
+          <article class="room-card reveal">
             <div class="image-placeholder room-img-deluxe" role="img" aria-label="Deluxe King Room with harbour view">
               <span class="room-badge">Popular</span>
             </div>
@@ -151,7 +159,7 @@
             </div>
           </article>
 
-          <article class="room-card">
+          <article class="room-card reveal">
             <div class="image-placeholder room-img-junior" role="img" aria-label="Junior Suite lounge area">
               <span class="room-badge">Best Value</span>
             </div>
@@ -173,7 +181,7 @@
             </div>
           </article>
 
-          <article class="room-card">
+          <article class="room-card reveal">
             <div class="image-placeholder room-img-penthouse" role="img" aria-label="Penthouse Suite with private terrace">
               <span class="room-badge">Signature</span>
             </div>
@@ -211,7 +219,7 @@
 
       <div class="container dining-layout">
 
-        <div>
+        <div class="reveal">
 
           <div class="section-label">Culinary Experience</div>
           <h2>Dining</h2>
@@ -225,7 +233,7 @@
 
         </div>
 
-        <div class="image-placeholder large-image img-dining" role="img" aria-label="Waterfront dining terrace at Shoreline"></div>
+        <div class="image-placeholder large-image img-dining reveal" role="img" aria-label="Waterfront dining terrace at Shoreline"></div>
 
       </div>
 
@@ -247,11 +255,11 @@
 
         <div class="spa-grid">
 
-          <div class="image-placeholder spa-large img-spa-large" role="img" aria-label="Poolside spa area"></div>
+          <div class="image-placeholder spa-large img-spa-large reveal" role="img" aria-label="Poolside spa area"></div>
 
-          <div class="spa-side">
-            <div class="image-placeholder spa-small img-spa-small-1" role="img" aria-label="Sunset spa lounge"></div>
-            <div class="image-placeholder spa-small img-spa-small-2" role="img" aria-label="Stingray lagoon spa"></div>
+          <div class="spa-side reveal-grid">
+            <div class="image-placeholder spa-small img-spa-small-1 reveal" role="img" aria-label="Sunset spa lounge"></div>
+            <div class="image-placeholder spa-small img-spa-small-2 reveal" role="img" aria-label="Stingray lagoon spa"></div>
           </div>
 
         </div>
@@ -267,13 +275,13 @@
         <div class="section-label">Gallery</div>
         <h2>Life at Shoreline</h2>
 
-        <div class="gallery-grid">
+        <div class="gallery-grid reveal-grid">
 
-          <div class="image-placeholder img-gallery-1" role="img" aria-label="Resort loungers"></div>
-          <div class="image-placeholder img-gallery-2" role="img" aria-label="Aerial view of the beach"></div>
-          <div class="image-placeholder img-gallery-3" role="img" aria-label="Sunset by the poolside"></div>
-          <div class="image-placeholder img-gallery-4" role="img" aria-label="Pool at night"></div>
-          <div class="image-placeholder img-gallery-5" role="img" aria-label="Bedside lamp detail"></div>
+          <div class="image-placeholder img-gallery-1 reveal" role="img" aria-label="Resort loungers"></div>
+          <div class="image-placeholder img-gallery-2 reveal" role="img" aria-label="Aerial view of the beach"></div>
+          <div class="image-placeholder img-gallery-3 reveal" role="img" aria-label="Sunset by the poolside"></div>
+          <div class="image-placeholder img-gallery-4 reveal" role="img" aria-label="Pool at night"></div>
+          <div class="image-placeholder img-gallery-5 reveal" role="img" aria-label="Bedside lamp detail"></div>
 
         </div>
 
@@ -292,9 +300,9 @@
         <div class="section-label">Guest Reviews</div>
         <h2>What Our Guests Say</h2>
 
-        <div class="testimonials-grid">
+        <div class="testimonials-grid reveal-grid">
 
-          <article class="testimonial-card">
+          <article class="testimonial-card reveal">
             <p class="star-rating">★★★★★</p>
             <blockquote>
               "The perfect coastal escape—beautiful rooms,
@@ -304,7 +312,7 @@
             <p class="guest-location">Sydney, NSW</p>
           </article>
 
-          <article class="testimonial-card">
+          <article class="testimonial-card reveal">
             <p class="star-rating">★★★★☆</p>
             <blockquote>
               "Loved the rooftop pool and the relaxed boutique vibe.
@@ -314,7 +322,7 @@
             <p class="guest-location">Melbourne, VIC</p>
           </article>
 
-          <article class="testimonial-card">
+          <article class="testimonial-card reveal">
             <p class="star-rating">★★★★★</p>
             <blockquote>
               "Thoughtful details everywhere from the décor to the service.

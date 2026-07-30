@@ -1,5 +1,48 @@
 // Shoreline Harbour & Hotel — mobile menu toggle
 
+// ---------------------------------------------------------------
+// Hero photo slideshow — crossfades every 5s (paused if the visitor
+// has requested reduced motion)
+// ---------------------------------------------------------------
+
+const heroSlides = document.querySelectorAll('.hero-slide');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (heroSlides.length > 1 && !prefersReducedMotion) {
+  let currentSlide = 0;
+  setInterval(() => {
+    heroSlides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % heroSlides.length;
+    heroSlides[currentSlide].classList.add('active');
+  }, 5000);
+}
+
+// ---------------------------------------------------------------
+// Scroll-reveal — fade + lift elements into place the first time
+// they enter the viewport
+// ---------------------------------------------------------------
+
+const revealEls = document.querySelectorAll('.reveal');
+
+if (revealEls.length) {
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+    revealEls.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('in-view'));
+  }
+}
+
 const navToggle = document.querySelector('.nav-toggle');
 const primaryNav = document.querySelector('nav[aria-label="Primary"]');
 
