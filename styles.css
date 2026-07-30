@@ -511,20 +511,20 @@ nav {
 
 /* Real photos dropped into each placeholder slot */
 
-.room-img-deluxe   { background-image: url('deluxe-king-room.jpg'); }
-.room-img-junior   { background-image: url('junior-suite-room.jpg'); }
-.room-img-penthouse{ background-image: url('penthouse-suite-room.jpg'); }
+.room-img-deluxe   { background-image: url('images/deluxe-king-room.jpg'); }
+.room-img-junior   { background-image: url('images/junior-suite-room.jpg'); }
+.room-img-penthouse{ background-image: url('images/penthouse-suite-room.jpg'); }
 
-.img-dining     { background-image: url('dining-terrace.jpg'); }
-.img-spa-large  { background-image: url('spa-poolside.jpg'); }
-.img-spa-small-1{ background-image: url('spa-sunset-lounge.jpg'); }
-.img-spa-small-2{ background-image: url('spa-stingray-lagoon.jpg'); }
+.img-dining     { background-image: url('images/dining-terrace.jpg'); }
+.img-spa-large  { background-image: url('images/spa-poolside.jpg'); }
+.img-spa-small-1{ background-image: url('images/spa-sunset-lounge.jpg'); }
+.img-spa-small-2{ background-image: url('images/spa-stingray-lagoon.jpg'); }
 
-.img-gallery-1 { background-image: url('gallery-resort-loungers.jpg'); }
-.img-gallery-2 { background-image: url('gallery-aerial-beach.jpg'); }
-.img-gallery-3 { background-image: url('gallery-sunset-poolside.jpg'); }
-.img-gallery-4 { background-image: url('gallery-night-pool.jpg'); }
-.img-gallery-5 { background-image: url('gallery-bedside-lamp.jpg'); }
+.img-gallery-1 { background-image: url('images/gallery-resort-loungers.jpg'); }
+.img-gallery-2 { background-image: url('images/gallery-aerial-beach.jpg'); }
+.img-gallery-3 { background-image: url('images/gallery-sunset-poolside.jpg'); }
+.img-gallery-4 { background-image: url('images/gallery-night-pool.jpg'); }
+.img-gallery-5 { background-image: url('images/gallery-bedside-lamp.jpg'); }
 
 .image-placeholder {
   min-height: 240px;
