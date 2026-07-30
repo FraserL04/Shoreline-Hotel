@@ -51,11 +51,11 @@
       </button>
 
       <ul class="nav-links">
-        <li><a href="#rooms">Rooms &amp; Suites</a></li>
+        <li><a href="rooms.html">Rooms &amp; Suites</a></li>
         <li><a href="#dining">Dining</a></li>
         <li><a href="#spa">Spa &amp; Design</a></li>
         <li><a href="#events">Meetings &amp; Events</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="#events">Contact</a></li>
       </ul>
 
@@ -87,8 +87,8 @@
           </p>
 
           <div class="hero-buttons">
-            <button>Book a Stay</button>
-            <button class="outline-button">Explore Rooms</button>
+            <a href="#events" class="nav-book-btn">Book a Stay</a>
+            <a href="rooms.html" class="outline-button">Explore Rooms</a>
           </div>
 
         </div>
@@ -134,7 +134,7 @@
         <div class="rooms-grid">
 
           <article class="room-card">
-            <div class="image-placeholder">
+            <div class="image-placeholder room-img-deluxe" role="img" aria-label="Deluxe King Room with harbour view">
               <span class="room-badge">Popular</span>
             </div>
             <h3>Deluxe King Room</h3>
@@ -146,13 +146,13 @@
             <p class="price">$420 / Night</p>
 
             <div class="button-group">
-              <button>Learn More</button>
-              <button>Book Now</button>
+              <a href="rooms.html#room-deluxe">Learn More</a>
+              <button class="book-room-btn" data-room="Deluxe King Room">Book Now</button>
             </div>
           </article>
 
           <article class="room-card">
-            <div class="image-placeholder">
+            <div class="image-placeholder room-img-junior" role="img" aria-label="Junior Suite lounge area">
               <span class="room-badge">Best Value</span>
             </div>
             <h3>Junior Suite</h3>
@@ -168,13 +168,13 @@
             <p class="price">$680 / Night</p>
 
             <div class="button-group">
-              <button>Learn More</button>
-              <button>Book Now</button>
+              <a href="rooms.html#room-junior">Learn More</a>
+              <button class="book-room-btn" data-room="Junior Suite">Book Now</button>
             </div>
           </article>
 
           <article class="room-card">
-            <div class="image-placeholder">
+            <div class="image-placeholder room-img-penthouse" role="img" aria-label="Penthouse Suite with private terrace">
               <span class="room-badge">Signature</span>
             </div>
 
@@ -192,15 +192,15 @@
             <p class="price">$1,800 / Night</p>
 
             <div class="button-group">
-              <button>Learn More</button>
-              <button>Book Now</button>
+              <a href="rooms.html#room-penthouse">Learn More</a>
+              <button class="book-room-btn" data-room="Penthouse Suite">Book Now</button>
             </div>
           </article>
 
         </div>
 
         <div class="section-cta">
-          <button>View All Rooms</button>
+          <a href="rooms.html" class="section-link">View All Rooms</a>
         </div>
 
       </div>
@@ -221,11 +221,11 @@
             dining experiences curated to celebrate the Gold Coast lifestyle.
           </p>
 
-          <button class="section-btn">Explore Dining</button>
+          <a href="#dining" class="section-link section-btn">Explore Dining</a>
 
         </div>
 
-        <div class="image-placeholder large-image"></div>
+        <div class="image-placeholder large-image img-dining" role="img" aria-label="Waterfront dining terrace at Shoreline"></div>
 
       </div>
 
@@ -243,15 +243,15 @@
           interiors inspired by natural coastal textures and timeless luxury.
         </p>
 
-        <button class="outline-dark section-btn">All Experiences</button>
+        <a href="gallery.html" class="outline-dark section-btn">All Experiences</a>
 
         <div class="spa-grid">
 
-          <div class="image-placeholder spa-large"></div>
+          <div class="image-placeholder spa-large img-spa-large" role="img" aria-label="Poolside spa area"></div>
 
           <div class="spa-side">
-            <div class="image-placeholder spa-small"></div>
-            <div class="image-placeholder spa-small"></div>
+            <div class="image-placeholder spa-small img-spa-small-1" role="img" aria-label="Sunset spa lounge"></div>
+            <div class="image-placeholder spa-small img-spa-small-2" role="img" aria-label="Stingray lagoon spa"></div>
           </div>
 
         </div>
@@ -269,12 +269,16 @@
 
         <div class="gallery-grid">
 
-          <div class="image-placeholder"></div>
-          <div class="image-placeholder"></div>
-          <div class="image-placeholder"></div>
-          <div class="image-placeholder"></div>
-          <div class="image-placeholder"></div>
+          <div class="image-placeholder img-gallery-1" role="img" aria-label="Resort loungers"></div>
+          <div class="image-placeholder img-gallery-2" role="img" aria-label="Aerial view of the beach"></div>
+          <div class="image-placeholder img-gallery-3" role="img" aria-label="Sunset by the poolside"></div>
+          <div class="image-placeholder img-gallery-4" role="img" aria-label="Pool at night"></div>
+          <div class="image-placeholder img-gallery-5" role="img" aria-label="Bedside lamp detail"></div>
 
+        </div>
+
+        <div class="section-cta">
+          <a href="gallery.html" class="section-link">View Full Gallery</a>
         </div>
 
       </div>
@@ -342,8 +346,8 @@
         </p>
 
         <div class="hero-buttons weddings-buttons">
-          <button>Plan Your Wedding</button>
-          <button class="outline-button">Corporate Events</button>
+          <a href="mailto:reservations@shoreline.com.au?subject=Wedding%20Enquiry" class="nav-book-btn">Plan Your Wedding</a>
+          <a href="mailto:reservations@shoreline.com.au?subject=Corporate%20Event%20Enquiry" class="outline-button">Corporate Events</a>
         </div>
 
       </div>
@@ -365,9 +369,62 @@
           harbour-view room priority.
         </p>
 
+        <form class="booking-form" id="booking-form" novalidate>
+
+          <div>
+            <label for="booking-name">Full Name</label>
+            <input type="text" id="booking-name" name="name" placeholder="Jane Smith" autocomplete="name">
+            <p class="field-error" data-error-for="booking-name"></p>
+          </div>
+
+          <div>
+            <label for="booking-email">Email</label>
+            <input type="email" id="booking-email" name="email" placeholder="jane@example.com" autocomplete="email">
+            <p class="field-error" data-error-for="booking-email"></p>
+          </div>
+
+          <div>
+            <label for="booking-checkin">Check-In</label>
+            <input type="date" id="booking-checkin" name="checkin" autocomplete="off">
+            <p class="field-error" data-error-for="booking-checkin"></p>
+          </div>
+
+          <div>
+            <label for="booking-checkout">Check-Out</label>
+            <input type="date" id="booking-checkout" name="checkout" autocomplete="off">
+            <p class="field-error" data-error-for="booking-checkout"></p>
+          </div>
+
+          <div>
+            <label for="booking-guests">Guests</label>
+            <select id="booking-guests" name="guests">
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5+">5+ Guests</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="booking-room">Room Type</label>
+            <select id="booking-room" name="room">
+              <option value="Deluxe King Room">Deluxe King Room — $420/night</option>
+              <option value="Junior Suite">Junior Suite — $680/night</option>
+              <option value="Penthouse Suite">Penthouse Suite — $1,800/night</option>
+            </select>
+          </div>
+
+          <div class="field-full">
+            <button type="submit" class="booking-submit">Book Now</button>
+          </div>
+
+          <div class="booking-confirmation" id="booking-confirmation" role="status" aria-live="polite"></div>
+
+        </form>
+
         <div class="hero-buttons events-buttons">
-          <button>Book Now</button>
-          <button class="outline-button">Contact Us</button>
+          <a href="mailto:reservations@shoreline.com.au" class="outline-button">Contact Us</a>
         </div>
 
       </div>
@@ -395,11 +452,11 @@
       <nav class="footer-col">
         <h3>Explore</h3>
         <ul>
-          <li><a href="#rooms">Rooms &amp; Suites</a></li>
+          <li><a href="rooms.html">Rooms &amp; Suites</a></li>
           <li><a href="#dining">Dining</a></li>
           <li><a href="#spa">Spa &amp; Design</a></li>
           <li><a href="#events">Meetings &amp; Events</a></li>
-          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
         </ul>
       </nav>
 
@@ -438,6 +495,11 @@
   </footer>
 
   <button id="back-to-top" aria-label="Back to top">↑</button>
+
+  <div class="mobile-book-bar">
+    <span class="mobile-book-bar-info">From<strong>$420/night</strong></span>
+    <a href="#events" class="nav-book-btn">Book Now</a>
+  </div>
 
   <script src="script.js"></script>
 

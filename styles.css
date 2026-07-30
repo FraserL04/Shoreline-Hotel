@@ -116,7 +116,11 @@ a {
 }
 
 button,
-.nav-book-btn {
+.nav-book-btn,
+.section-link,
+.outline-link,
+.outline-button,
+.outline-dark {
   background: var(--color-accent);
   color: var(--color-white);
   border: none;
@@ -128,6 +132,17 @@ button,
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.section-link,
+.outline-link {
+  display: inline-block;
+}
+
+.outline-link {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
 }
 
 /* =======================
@@ -343,6 +358,27 @@ nav {
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-lg);
+}
+
+.button-group a {
+  background: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: 4px;
+  padding: var(--space-sm) var(--space-lg);
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.button-group a:hover {
+  background: #a8752f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
 }
 
 .section-cta {
@@ -801,10 +837,15 @@ button,
 /* Buttons lift slightly and darken on hover */
 
 button:hover,
-.nav-book-btn:hover {
+.nav-book-btn:hover,
+.section-link:hover {
   background: #a8752f;
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+
+.outline-link:hover {
+  background: rgba(44,66,80,.08);
 }
 
 .outline-button:hover {
@@ -1082,9 +1123,41 @@ button:hover,
 
   /* --- Cards collapse to a single column --- */
 
-  .rooms-grid,
   .testimonials-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* --- Room cards become a swipeable carousel for faster scanning/booking --- */
+
+  .rooms-grid {
+    display: flex;
+    grid-template-columns: unset;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-md);
+    margin: 0 calc(var(--space-lg) * -1);
+    padding: 0 var(--space-lg) var(--space-sm);
+  }
+
+  .rooms-grid .room-card {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+  }
+
+  /* Hide the descriptive paragraph on mobile room cards so photo, price
+     and the Book button are visible without extra scrolling/reading */
+
+  .room-card > p:not(.room-meta):not(.price) {
+    display: none;
+  }
+
+  .room-card .button-group {
+    gap: var(--space-sm);
+  }
+
+  .room-card .button-group button:last-child {
+    flex: 1;
   }
 
   /* --- Card inner padding reduces to 16px --- */
@@ -1133,6 +1206,340 @@ button:hover,
     gap: var(--space-sm);
     text-align: center;
     padding: var(--space-lg);
+  }
+
+  /* --- Persistent quick-booking bar --- */
+
+  body {
+    padding-bottom: 76px;
+  }
+
+  .mobile-book-bar {
+    display: flex;
+  }
+
+  #back-to-top {
+    bottom: 92px;
+  }
+
+}
+
+/* =========================================================
+   MOBILE QUICK-BOOKING BAR
+   Sticky bottom bar (mobile only) so booking is always one
+   tap away, regardless of scroll position.
+========================================================= */
+
+.mobile-book-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  background: var(--color-primary);
+  padding: 10px var(--space-lg);
+  box-shadow: 0 -4px 16px rgba(0,0,0,.18);
+  z-index: 998;
+}
+
+.mobile-book-bar-info {
+  color: var(--color-white);
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.mobile-book-bar-info strong {
+  display: block;
+  font-family: "Marcellus SC", serif;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+}
+
+.mobile-book-bar .nav-book-btn {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   SUBPAGES — Rooms & Suites / Gallery
+========================================================= */
+
+.page-hero {
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-align: center;
+  padding: 72px var(--space-3xl) 56px;
+}
+
+.page-hero .section-label {
+  color: var(--color-accent);
+}
+
+.page-hero h1 {
+  color: var(--color-white);
+  font-size: 48px;
+  margin-bottom: var(--space-sm);
+}
+
+.page-hero p {
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--color-muted);
+}
+
+.breadcrumb {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--space-md);
+}
+
+.breadcrumb a {
+  color: var(--color-white);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+/* Room detail list */
+
+.room-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  padding: var(--space-2xl) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.room-detail:last-of-type {
+  border-bottom: none;
+}
+
+.room-detail.reverse .room-detail-image {
+  order: 2;
+}
+
+.room-detail-image {
+  min-height: 380px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.room-detail-amenities {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 0;
+  margin: var(--space-md) 0 var(--space-lg);
+}
+
+.room-detail-amenities li {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+}
+
+.room-detail-amenities li::before {
+  content: "\2713";
+  color: var(--color-accent);
+  margin-right: 6px;
+}
+
+/* Full gallery grid + lightbox */
+
+.full-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: var(--space-md);
+}
+
+.full-gallery-grid .gallery-item {
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.full-gallery-grid .gallery-item:hover {
+  filter: brightness(0.92);
+  transform: translateY(-2px);
+}
+
+.full-gallery-grid .gallery-item.span-2 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20,26,30,.94);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  z-index: 2000;
+}
+
+.lightbox-overlay.open {
+  display: flex;
+}
+
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 85vh;
+  width: auto;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  font-size: 32px;
+  line-height: 1;
+  padding: 8px;
+  cursor: pointer;
+}
+
+/* Booking form (in the #events section) */
+
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  text-align: left;
+  max-width: 640px;
+  margin: var(--space-xl) auto 0;
+}
+
+.booking-form .field-full {
+  grid-column: 1 / -1;
+}
+
+.booking-form label {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 6px;
+}
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 12px var(--space-md);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 4px;
+  color: var(--color-white);
+  font-family: "Jacques Francois", serif;
+  font-size: 14px;
+}
+
+.booking-form input::placeholder {
+  color: rgba(255,255,255,.5);
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.booking-form select option {
+  color: var(--color-dark);
+}
+
+.booking-form .field-error {
+  color: #e6a4a4;
+  font-size: 11px;
+  margin-top: 4px;
+  min-height: 14px;
+}
+
+.booking-submit {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: var(--space-sm);
+}
+
+.booking-confirmation {
+  grid-column: 1 / -1;
+  display: none;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 4px;
+  padding: var(--space-md);
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: var(--color-white);
+}
+
+.booking-confirmation.visible {
+  display: block;
+}
+
+@media (max-width: 768px) {
+
+  .full-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
+  }
+
+  .room-detail,
+  .room-detail.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .room-detail.reverse .room-detail-image {
+    order: 0;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .page-hero {
+    padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+  }
+
+  .page-hero h1 {
+    font-size: 34px;
+  }
+
+  .full-gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+
+  .full-gallery-grid .gallery-item.span-2 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .booking-form {
+    grid-template-columns: 1fr;
   }
 
 }
