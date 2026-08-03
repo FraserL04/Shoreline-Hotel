@@ -319,7 +319,7 @@ header.scrolled {
 }
 
 header nav {
-  max-width: 1200px;
+  max-width: 1800px;
   margin: 0 auto;
   padding: var(--space-sm) var(--space-3xl);
   display: flex;
@@ -1770,16 +1770,13 @@ button:hover,
     flex-wrap: wrap;
   }
 
-  /* --- Dining, spa and location stack into one column --- */
+  /* --- Dining and location stack into one column; spa and gallery
+     become swipeable carousels (see below) instead of a single column
+     stack --- */
 
   .dining-layout,
-  .spa-grid,
   .location-layout {
     grid-template-columns: 1fr;
-  }
-
-  .spa-large {
-    height: 300px;
   }
 
   .map-embed,
@@ -1787,16 +1784,43 @@ button:hover,
     min-height: 260px;
   }
 
-  /* --- Gallery becomes a single column --- */
+  /* --- Spa + gallery: horizontal scroll-snap carousel ---
+     .spa-side is flattened with display:contents so its two small
+     photos join .spa-large as three equal, swipeable slides instead of
+     nesting a vertical stack inside one slide. */
 
+  .spa-grid,
   .gallery-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     gap: var(--space-md);
   }
 
+  .spa-grid::-webkit-scrollbar,
+  .gallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .spa-side {
+    display: contents;
+  }
+
+  .spa-grid .image-placeholder,
+  .gallery-grid .image-placeholder {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+    height: 260px;
+  }
+
+  /* Beats the desktop varied-height nth-child rules above (same
+     specificity, but these come later) so every slide is a uniform
+     height instead of the bottom-aligned staggered desktop look */
   .gallery-grid .image-placeholder:nth-child(n) {
-    height: 200px;
+    height: 260px;
   }
 
   /* --- Footer stacks vertically --- */
@@ -2282,9 +2306,30 @@ button:hover,
 
 @media (max-width: 768px) {
 
+  /* Full gallery becomes a horizontal scroll-snap carousel instead of
+     a long masonry stack (13 photos was a lot of vertical scrolling).
+     Shape-aware spans from the desktop masonry don't apply in flex
+     layout, so gallery-feature/wide/tall just fall back to the same
+     slide size here. */
+
   .full-gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 180px;
+    display: flex;
+    grid-template-columns: none;
+    grid-auto-rows: unset;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .full-gallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .full-gallery-grid .gallery-item {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+    height: 280px;
   }
 
   .room-detail,
@@ -2308,16 +2353,8 @@ button:hover,
     font-size: 34px;
   }
 
-  .full-gallery-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: 220px;
-  }
-
-  .full-gallery-grid .gallery-item.gallery-feature,
-  .full-gallery-grid .gallery-item.gallery-wide,
-  .full-gallery-grid .gallery-item.gallery-tall {
-    grid-column: span 1;
-    grid-row: span 1;
+  .full-gallery-grid .gallery-item {
+    flex-basis: 86%;
   }
 
   .booking-form {
