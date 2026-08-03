@@ -319,8 +319,6 @@ header.scrolled {
 }
 
 header nav {
-  max-width: 1800px;
-  margin: 0 auto;
   padding: var(--space-sm) var(--space-3xl);
   display: flex;
   align-items: center;
