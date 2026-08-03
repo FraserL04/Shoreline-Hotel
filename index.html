@@ -4,6 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shoreline Harbour & Hotel</title>
+  <meta name="description" content="Boutique harbour-front hotel on the Gold Coast. Book rooms & suites, dine waterfront, and unwind at our spa — reserve directly for the best rate.">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shoreline Harbour & Hotel">
+  <meta property="og:title" content="Shoreline Harbour & Hotel">
+  <meta property="og:description" content="Boutique harbour-front hotel on the Gold Coast. Book rooms & suites, dine waterfront, and unwind at our spa — reserve directly for the best rate.">
+  <meta property="og:image" content="og-image.jpg">
+  <meta property="og:url" content="index.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shoreline Harbour & Hotel">
+  <meta name="twitter:description" content="Boutique harbour-front hotel on the Gold Coast. Book rooms & suites, dine waterfront, and unwind at our spa.">
+  <meta name="twitter:image" content="og-image.jpg">
+
+  <!-- Update "url"/"image" to absolute URLs once this site has a public domain -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Hotel",
+    "name": "Shoreline Harbour & Hotel",
+    "description": "Boutique harbour-front hotel on the Gold Coast offering rooms & suites, waterfront dining and a poolside spa.",
+    "image": "og-image.jpg",
+    "url": "index.html",
+    "priceRange": "$420-$1800",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Harbour Promenade",
+      "addressLocality": "Gold Coast",
+      "addressRegion": "QLD",
+      "postalCode": "4217",
+      "addressCountry": "AU"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -27.9978,
+      "longitude": 153.4310
+    },
+    "starRating": {
+      "@type": "Rating",
+      "ratingValue": "5"
+    },
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Free WiFi" },
+      { "@type": "LocationFeatureSpecification", "name": "Spa" },
+      { "@type": "LocationFeatureSpecification", "name": "Waterfront Dining" },
+      { "@type": "LocationFeatureSpecification", "name": "Valet Parking" }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -74,8 +128,27 @@
         <div class="hero-slide" style="background-image:url('images/gallery-night-pool.jpg')"></div>
         <div class="hero-slide" style="background-image:url('images/spa-poolside.jpg')"></div>
         <div class="hero-slide" style="background-image:url('images/dining-terrace.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/gallery-aerial-beach.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/spa-sunset-lounge.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/gallery-resort-loungers.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/spa-stingray-lagoon.jpg')"></div>
       </div>
       <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-controls">
+        <button class="hero-arrow hero-arrow-prev" aria-label="Previous photo">‹</button>
+        <div class="hero-dots" role="tablist" aria-label="Hero photo selector">
+          <button class="hero-dot active" role="tab" aria-selected="true" aria-label="Show photo 1 of 8"></button>
+          <button class="hero-dot" role="tab" aria-selected="false" aria-label="Show photo 2 of 8"></button>
+          <button class="hero-dot" role="tab" aria-selected="false" aria-label="Show photo 3 of 8"></button>
+          <button class="hero-dot" role="tab" aria-selected="false" aria-label="Show photo 4 of 8"></button>
+          <button class="hero-dot" role="tab" aria-selected="false" aria-label="Show photo 5 of 8"></button>
+          <button class="hero-dot" role="tab" aria-selected="false" aria-label="Show photo 6 of 8"></button>
+          <button class="hero-dot" role="tab" aria-selected="false" aria-label="Show photo 7 of 8"></button>
+          <button class="hero-dot" role="tab" aria-selected="false" aria-label="Show photo 8 of 8"></button>
+        </div>
+        <button class="hero-arrow hero-arrow-next" aria-label="Next photo">›</button>
+      </div>
 
       <div class="container hero-layout">
 
@@ -113,6 +186,7 @@
               stroke="currentColor"
               stroke-width="2"
             />
+            <text x="50" y="40" text-anchor="middle">S</text>
           </svg>
 
         </div>
@@ -142,66 +216,95 @@
         <div class="rooms-grid reveal-grid">
 
           <article class="room-card reveal">
-            <div class="image-placeholder room-img-deluxe" role="img" aria-label="Deluxe King Room with harbour view">
+            <div class="image-placeholder">
+              <img src="images/deluxe-king-room.jpg" alt="Deluxe King Room with harbour view" loading="lazy" width="1400" height="933">
               <span class="room-badge">Popular</span>
+              <span class="room-price-badge">$420<span class="per-night">/ Night</span></span>
             </div>
-            <h3>Deluxe King Room</h3>
-            <p class="room-meta">Harbour View · King Bed · Ensuite</p>
-            <p>
-              Sophisticated coastal accommodation with warm finishes and
-              uninterrupted harbour outlooks.
-            </p>
-            <p class="price">$420 / Night</p>
+            <div class="room-card-body">
+              <h3>Deluxe King Room</h3>
+              <p class="room-meta">Harbour View · King Bed · Ensuite</p>
+              <p>
+                Sophisticated coastal accommodation with warm finishes and
+                uninterrupted harbour outlooks.
+              </p>
 
-            <div class="button-group">
-              <a href="rooms.html#room-deluxe">Learn More</a>
-              <button class="book-room-btn" data-room="Deluxe King Room">Book Now</button>
+              <div class="button-group">
+                <a href="rooms.html#room-deluxe" class="btn-outline">Learn More</a>
+                <button class="book-room-btn" data-room="Deluxe King Room">Book Now</button>
+              </div>
+
+              <button class="quick-view-toggle" aria-expanded="false">
+                Quick View <span class="chevron">⌄</span>
+              </button>
+              <ul class="quick-view-amenities">
+                <li>Free WiFi</li>
+                <li>Air Conditioning</li>
+                <li>Mini Bar</li>
+                <li>Smart TV</li>
+              </ul>
             </div>
           </article>
 
           <article class="room-card reveal">
-            <div class="image-placeholder room-img-junior" role="img" aria-label="Junior Suite lounge area">
+            <div class="image-placeholder">
+              <img src="images/junior-suite-room.jpg" alt="Junior Suite lounge area" loading="lazy" width="1400" height="933">
               <span class="room-badge">Best Value</span>
+              <span class="room-price-badge">$680<span class="per-night">/ Night</span></span>
             </div>
-            <h3>Junior Suite</h3>
-            <p class="room-meta">
-              Lounge Area · Premium Views · Ensuite
-            </p>
+            <div class="room-card-body">
+              <h3>Junior Suite</h3>
+              <p class="room-meta">Lounge Area · Premium Views · Ensuite</p>
+              <p>
+                Spacious suite designed for extended stays with refined luxury
+                throughout.
+              </p>
 
-            <p>
-              Spacious suite designed for extended stays with refined luxury
-              throughout.
-            </p>
+              <div class="button-group">
+                <a href="rooms.html#room-junior" class="btn-outline">Learn More</a>
+                <button class="book-room-btn" data-room="Junior Suite">Book Now</button>
+              </div>
 
-            <p class="price">$680 / Night</p>
-
-            <div class="button-group">
-              <a href="rooms.html#room-junior">Learn More</a>
-              <button class="book-room-btn" data-room="Junior Suite">Book Now</button>
+              <button class="quick-view-toggle" aria-expanded="false">
+                Quick View <span class="chevron">⌄</span>
+              </button>
+              <ul class="quick-view-amenities">
+                <li>Free WiFi</li>
+                <li>Separate Lounge</li>
+                <li>Nespresso Machine</li>
+                <li>Bathrobe &amp; Slippers</li>
+              </ul>
             </div>
           </article>
 
           <article class="room-card reveal">
-            <div class="image-placeholder room-img-penthouse" role="img" aria-label="Penthouse Suite with private terrace">
+            <div class="image-placeholder">
+              <img src="images/penthouse-suite-room.jpg" alt="Penthouse Suite with private terrace" loading="lazy" width="1400" height="933">
               <span class="room-badge">Signature</span>
+              <span class="room-price-badge">$1,800<span class="per-night">/ Night</span></span>
             </div>
+            <div class="room-card-body">
+              <h3>Penthouse Suite</h3>
+              <p class="room-meta">Private Terrace · Harbour Panorama · Luxury Bath</p>
+              <p>
+                The ultimate Shoreline experience with expansive interiors and
+                signature services.
+              </p>
 
-            <h3>Penthouse Suite</h3>
+              <div class="button-group">
+                <a href="rooms.html#room-penthouse" class="btn-outline">Learn More</a>
+                <button class="book-room-btn" data-room="Penthouse Suite">Book Now</button>
+              </div>
 
-            <p class="room-meta">
-              Private Terrace · Harbour Panorama · Luxury Bath
-            </p>
-
-            <p>
-              The ultimate Shoreline experience with expansive interiors and
-              signature services.
-            </p>
-
-            <p class="price">$1,800 / Night</p>
-
-            <div class="button-group">
-              <a href="rooms.html#room-penthouse">Learn More</a>
-              <button class="book-room-btn" data-room="Penthouse Suite">Book Now</button>
+              <button class="quick-view-toggle" aria-expanded="false">
+                Quick View <span class="chevron">⌄</span>
+              </button>
+              <ul class="quick-view-amenities">
+                <li>Private Terrace</li>
+                <li>Butler Service</li>
+                <li>Complimentary Breakfast</li>
+                <li>Full Mini Bar</li>
+              </ul>
             </div>
           </article>
 
@@ -233,7 +336,7 @@
 
         </div>
 
-        <div class="image-placeholder large-image img-dining reveal" role="img" aria-label="Waterfront dining terrace at Shoreline"></div>
+        <div class="image-placeholder large-image reveal"><img src="images/dining-terrace.jpg" alt="Waterfront dining terrace at Shoreline" loading="lazy" width="1120" height="1400"></div>
 
       </div>
 
@@ -255,11 +358,11 @@
 
         <div class="spa-grid">
 
-          <div class="image-placeholder spa-large img-spa-large reveal" role="img" aria-label="Poolside spa area"></div>
+          <div class="image-placeholder spa-large reveal"><img src="images/spa-poolside.jpg" alt="Poolside spa area" loading="lazy" width="1400" height="1120"></div>
 
           <div class="spa-side reveal-grid">
-            <div class="image-placeholder spa-small img-spa-small-1 reveal" role="img" aria-label="Sunset spa lounge"></div>
-            <div class="image-placeholder spa-small img-spa-small-2 reveal" role="img" aria-label="Stingray lagoon spa"></div>
+            <div class="image-placeholder spa-small reveal"><img src="images/spa-sunset-lounge.jpg" alt="Sunset spa lounge" loading="lazy" width="1400" height="933"></div>
+            <div class="image-placeholder spa-small reveal"><img src="images/spa-stingray-lagoon.jpg" alt="Stingray lagoon spa" loading="lazy" width="894" height="1400"></div>
           </div>
 
         </div>
@@ -277,11 +380,11 @@
 
         <div class="gallery-grid reveal-grid">
 
-          <div class="image-placeholder img-gallery-1 reveal" role="img" aria-label="Resort loungers"></div>
-          <div class="image-placeholder img-gallery-2 reveal" role="img" aria-label="Aerial view of the beach"></div>
-          <div class="image-placeholder img-gallery-3 reveal" role="img" aria-label="Sunset by the poolside"></div>
-          <div class="image-placeholder img-gallery-4 reveal" role="img" aria-label="Pool at night"></div>
-          <div class="image-placeholder img-gallery-5 reveal" role="img" aria-label="Bedside lamp detail"></div>
+          <div class="image-placeholder reveal"><img src="images/gallery-resort-loungers.jpg" alt="Resort loungers" loading="lazy" width="1120" height="1400"></div>
+          <div class="image-placeholder reveal"><img src="images/gallery-aerial-beach.jpg" alt="Aerial view of the beach" loading="lazy" width="787" height="1400"></div>
+          <div class="image-placeholder reveal"><img src="images/gallery-sunset-poolside.jpg" alt="Sunset by the poolside" loading="lazy" width="1400" height="933"></div>
+          <div class="image-placeholder reveal"><img src="images/gallery-night-pool.jpg" alt="Pool at night" loading="lazy" width="1400" height="935"></div>
+          <div class="image-placeholder reveal"><img src="images/gallery-bedside-lamp.jpg" alt="Bedside lamp detail" loading="lazy" width="934" height="1400"></div>
 
         </div>
 
@@ -300,38 +403,93 @@
         <div class="section-label">Guest Reviews</div>
         <h2>What Our Guests Say</h2>
 
-        <div class="testimonials-grid reveal-grid">
+        <div class="testimonial-carousel reveal">
 
-          <article class="testimonial-card reveal">
-            <p class="star-rating">★★★★★</p>
-            <blockquote>
-              "The perfect coastal escape—beautiful rooms,
-              friendly staff and unbeatable location."
-            </blockquote>
-            <p class="guest-name">— Emily R.</p>
-            <p class="guest-location">Sydney, NSW</p>
-          </article>
+          <div class="testimonial-track">
 
-          <article class="testimonial-card reveal">
-            <p class="star-rating">★★★★☆</p>
-            <blockquote>
-              "Loved the rooftop pool and the relaxed boutique vibe.
-              We'll definitely be back."
-            </blockquote>
-            <p class="guest-name">— Daniel K.</p>
-            <p class="guest-location">Melbourne, VIC</p>
-          </article>
+            <article class="testimonial-card active">
+              <p class="star-rating">★★★★★</p>
+              <blockquote>
+                "The perfect coastal escape—beautiful rooms,
+                friendly staff and unbeatable location."
+              </blockquote>
+              <p class="guest-name">— Emily R.</p>
+              <p class="guest-location">Sydney, NSW</p>
+            </article>
 
-          <article class="testimonial-card reveal">
-            <p class="star-rating">★★★★★</p>
-            <blockquote>
-              "Thoughtful details everywhere from the décor to the service.
-              Felt truly looked after."
-            </blockquote>
-            <p class="guest-name">— Sophia L.</p>
-            <p class="guest-location">London, UK</p>
-          </article>
+            <article class="testimonial-card">
+              <p class="star-rating">★★★★☆</p>
+              <blockquote>
+                "Loved the rooftop pool and the relaxed boutique vibe.
+                We'll definitely be back."
+              </blockquote>
+              <p class="guest-name">— Daniel K.</p>
+              <p class="guest-location">Melbourne, VIC</p>
+            </article>
 
+            <article class="testimonial-card">
+              <p class="star-rating">★★★★★</p>
+              <blockquote>
+                "Thoughtful details everywhere from the décor to the service.
+                Felt truly looked after."
+              </blockquote>
+              <p class="guest-name">— Sophia L.</p>
+              <p class="guest-location">London, UK</p>
+            </article>
+
+          </div>
+
+          <div class="testimonial-controls">
+            <button class="carousel-arrow carousel-prev" aria-label="Previous review">‹</button>
+            <div class="carousel-dots" role="tablist" aria-label="Guest review selector">
+              <button class="carousel-dot active" role="tab" aria-selected="true" aria-label="Show review 1 of 3"></button>
+              <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Show review 2 of 3"></button>
+              <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Show review 3 of 3"></button>
+            </div>
+            <button class="carousel-arrow carousel-next" aria-label="Next review">›</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="location">
+
+      <div class="container location-layout">
+
+        <div class="reveal">
+
+          <div class="section-label">Find Us</div>
+          <h2>Visit Shoreline</h2>
+
+          <p>
+            123 Harbour Promenade<br>
+            Gold Coast, QLD 4217<br>
+            Australia
+          </p>
+
+          <p class="location-meta">
+            15 minutes from Gold Coast Airport · Complimentary valet parking
+          </p>
+
+          <a
+            href="https://maps.google.com/?q=-27.9978,153.4310"
+            target="_blank"
+            rel="noopener"
+            class="section-link"
+          >Get Directions</a>
+
+        </div>
+
+        <div class="map-embed reveal">
+          <iframe
+            src="https://maps.google.com/maps?q=-27.9978,153.4310&z=16&output=embed"
+            title="Map showing Shoreline Harbour & Hotel's location on the Gold Coast"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
 
       </div>
@@ -405,13 +563,11 @@
 
           <div>
             <label for="booking-guests">Guests</label>
-            <select id="booking-guests" name="guests">
-              <option value="1">1 Guest</option>
-              <option value="2" selected>2 Guests</option>
-              <option value="3">3 Guests</option>
-              <option value="4">4 Guests</option>
-              <option value="5+">5+ Guests</option>
-            </select>
+            <div class="guest-stepper">
+              <button type="button" class="stepper-btn stepper-decrease" aria-label="Decrease guests">−</button>
+              <input type="number" id="booking-guests" name="guests" value="2" min="1" max="8" readonly inputmode="numeric" aria-live="polite">
+              <button type="button" class="stepper-btn stepper-increase" aria-label="Increase guests">+</button>
+            </div>
           </div>
 
           <div>
@@ -421,6 +577,11 @@
               <option value="Junior Suite">Junior Suite — $680/night</option>
               <option value="Penthouse Suite">Penthouse Suite — $1,800/night</option>
             </select>
+          </div>
+
+          <div class="field-full booking-summary" id="booking-summary" aria-live="polite">
+            <span class="booking-summary-detail" id="booking-summary-detail">Select your check-in and check-out dates to see a total.</span>
+            <span class="booking-summary-total" id="booking-summary-total"></span>
           </div>
 
           <div class="field-full">

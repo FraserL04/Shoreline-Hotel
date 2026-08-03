@@ -1,5 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Jacques+Francois&family=Marcellus+SC&family=Wittgenstein:ital@0;1&display=swap');
 
+/* Smooth cross-page transitions (index.html <-> rooms.html <-> gallery.html).
+   Pure progressive enhancement: browsers without support (anything but
+   recent Chrome/Edge) just ignore this and navigate normally - no JS,
+   no fallback needed, nothing to break. */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   TABLE OF CONTENTS
+   (search for the ALL-CAPS heading to jump to a section)
+
+   Variables & base reset ......... :root, *, html, body
+   Scroll-reveal animation ........ .reveal / .reveal-grid
+   Announcement bar
+   Typography ...................... h1-h3, buttons, links
+   Header + Navigation ............. header, nav, .logo, .nav-links
+   Hero ............................ #hero, .hero-slide(s), .hero-controls
+   Sections (shared) ............... section padding + cream/white rhythm
+   Room cards ....................... .rooms-grid, .room-card, quick-view
+   Dining ........................... .dining-layout
+   Location ......................... .location-layout, .map-embed
+   Spa .............................. .spa-grid
+   Events ........................... #events, .booking-form, guest stepper
+   Gallery (homepage preview) ...... .gallery-grid
+   Photo frames ..................... .image-placeholder + hover zoom
+   Testimonials ..................... .testimonial-carousel
+   Footer
+   SECTION DETAILS .................. labels, quote band, badges, weddings
+   POLISH ............................ hover states, back-to-top, progress bar
+   RESPONSIVE ........................ hamburger nav, tablet + mobile
+   MOBILE QUICK-BOOKING BAR
+   SUBPAGES .......................... rooms.html / gallery.html specifics
+========================================================= */
+
 :root {
   --color-primary: #2c4250;
   --color-accent: #c08a3e;
@@ -184,15 +233,92 @@ button,
   color: var(--color-primary);
 }
 
+/* Shine sweep on the real CTA-style buttons only (not icon buttons like
+   the nav toggle, carousel arrows, or stepper +/-, where a diagonal
+   light streak across a 36px circle would just look like a glitch) */
+
+.nav-book-btn,
+.section-link,
+.outline-link,
+.outline-button,
+.outline-dark,
+.book-room-btn,
+.booking-submit,
+.button-group a {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-book-btn::after,
+.section-link::after,
+.outline-link::after,
+.outline-button::after,
+.outline-dark::after,
+.book-room-btn::after,
+.booking-submit::after,
+.button-group a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.nav-book-btn:hover::after,
+.section-link:hover::after,
+.outline-link:hover::after,
+.outline-button:hover::after,
+.outline-dark:hover::after,
+.book-room-btn:hover::after,
+.booking-submit:hover::after,
+.button-group a:hover::after {
+  left: 125%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-book-btn::after,
+  .section-link::after,
+  .outline-link::after,
+  .outline-button::after,
+  .outline-dark::after,
+  .book-room-btn::after,
+  .booking-submit::after,
+  .button-group a::after {
+    display: none;
+  }
+}
+
 /* =======================
    Header
 ======================= */
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
   background: var(--color-primary);
+  transition: box-shadow 0.35s ease;
 }
 
-nav {
+/* Header gains a lifted shadow once the page scrolls (JS toggles this
+   class) — a "sticky" header without motion feedback reads as static */
+
+header.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header {
+    transition: none;
+  }
+}
+
+header nav {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-sm) var(--space-3xl);
@@ -281,6 +407,9 @@ nav {
   overflow: hidden;
   background: var(--color-primary);
   color: var(--color-white);
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
   padding: 96px var(--space-3xl) 112px;
 }
 
@@ -321,6 +450,95 @@ nav {
   .hero-slide {
     transition: opacity 1.2s ease;
     transform: none;
+  }
+}
+
+/* Hero slideshow controls — arrows + dots grouped at the bottom so they
+   never collide with the headline/tagline regardless of viewport height */
+
+.hero-controls {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-xl);
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.hero-arrow {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--color-white);
+  font-size: 19px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.hero-arrow:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.hero-dots {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.hero-dot.active {
+  background: var(--color-accent);
+  transform: scale(1.4);
+}
+
+@media (max-width: 480px) {
+  .hero-controls {
+    bottom: var(--space-lg);
+    gap: var(--space-sm);
+  }
+
+  .hero-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .hero-dots {
+    gap: 6px;
+  }
+
+  .hero-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .hero-dot.active {
+    transform: scale(1.3);
   }
 }
 
@@ -393,6 +611,12 @@ nav {
   height: 100%;
 }
 
+.hero-emblem text {
+  fill: currentColor;
+  font-family: "Marcellus SC", serif;
+  font-size: 20px;
+}
+
 /* =======================
    Sections
 ======================= */
@@ -402,6 +626,7 @@ nav {
 #spa,
 #gallery,
 #testimonials,
+#location,
 #contact {
   padding: var(--space-2xl) var(--space-3xl);
 }
@@ -418,6 +643,7 @@ nav {
 
 #dining,
 #gallery,
+#location,
 #contact {
   background: var(--color-white);
 }
@@ -438,13 +664,72 @@ nav {
 
 .room-card {
   background: var(--color-white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(32, 66, 80, 0.12);
+  border: 1px solid rgba(44, 66, 80, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.room-card .image-placeholder {
+  height: 280px;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.room-card-body {
   padding: var(--space-lg);
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.room-card-body h3 {
+  margin-bottom: 4px;
+}
+
+/* Price now lives as a badge on the photo itself */
+
+.room-price-badge {
+  position: absolute;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  background: rgba(32, 50, 61, 0.88);
+  backdrop-filter: blur(3px);
+  color: var(--color-white);
+  font-family: "Marcellus SC", serif;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  padding: 7px 14px;
+  border-radius: 3px;
+  line-height: 1.3;
+}
+
+.room-price-badge .per-night {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-top: 1px;
 }
 
 .room-meta {
   color: var(--color-muted);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid rgba(44, 66, 80, 0.1);
+}
+
+.room-card-body > p:not(.room-meta) {
+  color: var(--color-primary);
+  opacity: 0.82;
+  font-size: 14.5px;
 }
 
 .price {
@@ -455,7 +740,8 @@ nav {
 .button-group {
   display: flex;
   gap: var(--space-md);
-  margin-top: var(--space-lg);
+  margin-top: auto;
+  padding-top: var(--space-lg);
 }
 
 .button-group a {
@@ -479,6 +765,91 @@ nav {
   box-shadow: 0 6px 14px rgba(0,0,0,.15);
 }
 
+/* Secondary "Learn More" link reads as secondary to "Book Now" so the
+   card has a clear primary action instead of two competing gold buttons */
+
+.button-group a.btn-outline {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.button-group a.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Room card quick-view — click-to-expand amenities (not hover-only, so
+   it works identically via tap on touch devices and for keyboard users) */
+
+.quick-view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-md);
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.quick-view-toggle:hover {
+  color: var(--color-accent);
+}
+
+.quick-view-toggle .chevron {
+  font-size: 12px;
+  transition: transform 0.25s ease;
+}
+
+.quick-view-toggle[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.quick-view-amenities {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px 12px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+}
+
+.quick-view-amenities.open {
+  max-height: 160px;
+  opacity: 1;
+  margin-top: var(--space-sm);
+}
+
+.quick-view-amenities li {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  color: var(--color-primary);
+}
+
+.quick-view-amenities li::before {
+  content: "\2713";
+  color: var(--color-accent);
+  margin-right: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quick-view-amenities,
+  .quick-view-toggle .chevron {
+    transition: none;
+  }
+}
+
 .section-cta {
   text-align: center;
   margin-top: var(--space-xl);
@@ -493,6 +864,39 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: var(--space-xl);
   align-items: center;
+}
+
+/* =======================
+   Location
+======================= */
+
+.location-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.location-meta {
+  color: var(--color-muted);
+  font-size: 14px;
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.map-embed {
+  min-height: 360px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border: 0;
 }
 
 /* =======================
@@ -511,11 +915,11 @@ nav {
   gap: var(--space-lg);
 }
 
-.spa-large {
+.image-placeholder.spa-large {
   height: 500px;
 }
 
-.spa-small {
+.image-placeholder.spa-small {
   height: 238px;
 }
 
@@ -595,55 +999,76 @@ nav {
 }
 
 /* =======================
-   Image Placeholders
+   Photo frames
+   .image-placeholder is now a real photo frame: a fixed/sized box that
+   clips a real <img> (object-fit: cover) inside it. The placeholder
+   background still shows briefly while a photo loads.
 ======================= */
 
 .image-placeholder,
 .large-image,
 .map-placeholder {
   background: var(--color-placeholder);
-  background-size: cover;
-  background-position: center;
   border-radius: 4px;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Real photos dropped into each placeholder slot */
+.image-placeholder img,
+.large-image img,
+.map-placeholder img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s ease, filter 0.5s ease;
+}
 
-.room-img-deluxe   { background-image: url('images/deluxe-king-room.jpg'); }
-.room-img-junior   { background-image: url('images/junior-suite-room.jpg'); }
-.room-img-penthouse{ background-image: url('images/penthouse-suite-room.jpg'); }
+.image-placeholder:hover img,
+.large-image:hover img,
+.map-placeholder:hover img {
+  transform: scale(1.12);
+  filter: brightness(0.92);
+}
 
-.img-dining     { background-image: url('images/dining-terrace.jpg'); }
-.img-spa-large  { background-image: url('images/spa-poolside.jpg'); }
-.img-spa-small-1{ background-image: url('images/spa-sunset-lounge.jpg'); }
-.img-spa-small-2{ background-image: url('images/spa-stingray-lagoon.jpg'); }
-
-.img-gallery-1 { background-image: url('images/gallery-resort-loungers.jpg'); }
-.img-gallery-2 { background-image: url('images/gallery-aerial-beach.jpg'); }
-.img-gallery-3 { background-image: url('images/gallery-sunset-poolside.jpg'); }
-.img-gallery-4 { background-image: url('images/gallery-night-pool.jpg'); }
-.img-gallery-5 { background-image: url('images/gallery-bedside-lamp.jpg'); }
+@media (prefers-reduced-motion: reduce) {
+  .image-placeholder img,
+  .large-image img,
+  .map-placeholder img,
+  .image-placeholder:hover img,
+  .large-image:hover img,
+  .map-placeholder:hover img {
+    transition: none;
+    transform: none;
+    filter: none;
+  }
+}
 
 .image-placeholder {
-  min-height: 240px;
+  height: 240px;
 }
 
-.large-image {
-  min-height: 420px;
+.image-placeholder.large-image {
+  height: 420px;
 }
 
 .map-placeholder {
-  min-height: 420px;
+  height: 420px;
 }
 
 /* =======================
    Testimonials
 ======================= */
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
+.testimonial-carousel {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.testimonial-track {
+  position: relative;
+  transition: height 0.4s ease;
 }
 
 .testimonial-card {
@@ -651,6 +1076,85 @@ nav {
   padding: var(--space-xl);
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.testimonial-track .testimonial-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.testimonial-track .testimonial-card.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-track .testimonial-card {
+    transition: none;
+  }
+}
+
+.testimonial-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.carousel-arrow {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.carousel-arrow:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(44, 66, 80, 0.25);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dot:hover {
+  background: rgba(44, 66, 80, 0.5);
+}
+
+.carousel-dot.active {
+  background: var(--color-accent);
+  transform: scale(1.4);
 }
 
 blockquote {
@@ -666,42 +1170,13 @@ blockquote {
 }
 
 /* =======================
-   Contact
-======================= */
-
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-label {
-  display: block;
-  margin-bottom: var(--space-sm);
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: var(--space-md);
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  font-family: inherit;
-}
-
-/* =======================
    Footer
 ======================= */
 
 footer {
   background: var(--color-dark);
   color: var(--color-white);
+  border-top: 1px solid var(--color-accent);
 }
 
 .footer-top {
@@ -709,8 +1184,8 @@ footer {
   margin: 0 auto;
   padding: var(--space-3xl);
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr;
-  gap: var(--space-xl);
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: var(--space-2xl);
 }
 
 .footer-links {
@@ -739,21 +1214,32 @@ footer {
 }
 
 .footer-col h3 {
-  color: var(--color-white);
-  font-family: "Jacques Francois", serif;
+  color: var(--color-accent);
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 12px;
-  margin-bottom: var(--space-md);
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  margin-bottom: var(--space-lg);
 }
 
 .footer-col ul {
   list-style: none;
   padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: var(--space-sm);
+}
+
+.footer-col ul li:last-child {
+  margin-bottom: 0;
 }
 
 .footer-col a {
   color: var(--color-white);
+  font-size: 14px;
 }
 
 .footer-col p {
@@ -802,8 +1288,8 @@ footer {
 }
 
 /* =========================================================
-   LAYER 4 — FIGMA MATCH REFINEMENTS
-   New pieces added to match the Figma design.
+   SECTION DETAILS — labels, quote band, badges, weddings band,
+   testimonial meta
 ========================================================= */
 
 /* Small gold label that sits above each section heading */
@@ -842,16 +1328,14 @@ footer {
   margin: 0 auto;
 }
 
-/* Corner badges on the room cards */
-
-.room-card .image-placeholder {
-  position: relative;
-}
+/* Room badges. On homepage cards this sits as a corner overlay on the
+   photo (.image-placeholder is already position:relative for this).
+   On rooms.html it's a plain inline label above the heading instead —
+   it isn't inside an image container there, so it stays in normal flow
+   rather than using position:absolute with no positioned ancestor. */
 
 .room-badge {
-  position: absolute;
-  top: var(--space-md);
-  left: var(--space-md);
+  display: inline-block;
   background: var(--color-primary);
   color: var(--color-white);
   font-family: "Inter", sans-serif;
@@ -861,6 +1345,14 @@ footer {
   text-transform: uppercase;
   padding: 6px 12px;
   border-radius: 2px;
+  margin-bottom: var(--space-sm);
+}
+
+.room-card .room-badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  margin-bottom: 0;
 }
 
 /* Buttons that sit under section text */
@@ -932,13 +1424,6 @@ button,
   transition: all 0.25s ease;
 }
 
-/* Image placeholders zoom in slightly on hover via background-size,
-   which crops cleanly within the existing box (no overflow needed) */
-
-.image-placeholder {
-  transition: filter 0.5s ease, background-size 0.9s ease, box-shadow 0.3s ease;
-}
-
 /* Buttons lift slightly and darken on hover */
 
 button:hover,
@@ -979,11 +1464,13 @@ button:hover,
   transition: width 0.25s ease;
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.nav-active::after {
   width: 100%;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.nav-active {
   color: var(--color-accent);
 }
 
@@ -1004,21 +1491,6 @@ button:hover,
 .testimonial-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(0,0,0,.10);
-}
-
-/* Images zoom and darken slightly on hover, like a real photo would */
-
-.image-placeholder:hover {
-  filter: brightness(0.92);
-  background-size: 112%;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .image-placeholder,
-  .image-placeholder:hover {
-    transition: none;
-    background-size: cover;
-  }
 }
 
 /* Scroll progress bar — fixed to the very top of the page */
@@ -1071,8 +1543,7 @@ button:hover,
 }
 
 /* =========================================================
-   LAYER 3 — RESPONSIVE + HAMBURGER NAV
-   Everything below is the mobile and tablet behaviour.
+   RESPONSIVE — hamburger nav, tablet and mobile breakpoints
 ========================================================= */
 
 /* Hamburger toggle button — hidden on desktop, shown on mobile */
@@ -1108,14 +1579,13 @@ button:hover,
 @media (max-width: 768px) {
 
   /* Let the full nav wrap instead of overflowing, no hamburger yet */
-  nav {
+  header nav {
     flex-wrap: wrap;
     padding: var(--space-sm) var(--space-lg);
   }
 
-  /* Room cards and testimonials drop to 2 columns */
-  .rooms-grid,
-  .testimonials-grid {
+  /* Room cards drop to 2 columns */
+  .rooms-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1134,7 +1604,7 @@ button:hover,
 
   /* --- Navigation collapses to a hamburger menu --- */
 
-  nav {
+  header nav {
     flex-wrap: wrap;
     padding: var(--space-sm) var(--space-lg);
     gap: var(--space-md);
@@ -1144,24 +1614,44 @@ button:hover,
     display: flex;
   }
 
-  .nav-links,
-  .nav-book-btn {
-    display: none;
-  }
-
-  nav.nav-open .nav-links {
-    display: flex;
+  /* .nav-links stays display:flex always (needed so max-height/opacity
+     can transition) but is collapsed to nothing until nav-open. */
+  .nav-links {
     flex-direction: column;
     flex-basis: 100%;
     gap: var(--space-md);
     margin-left: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease 0.05s, padding 0.4s ease;
+  }
+
+  /* Scoped to header nav specifically - .nav-book-btn is reused as a
+     plain button style elsewhere (hero, weddings, room cards) and
+     those must stay visible; only the header's copy collapses with
+     the hamburger menu. */
+  header nav > .nav-book-btn {
+    display: none;
+  }
+
+  nav.nav-open .nav-links {
+    max-height: 400px;
+    opacity: 1;
     padding: var(--space-md) 0 0;
   }
 
-  nav.nav-open .nav-book-btn {
+  nav.nav-open > .nav-book-btn {
     display: inline-block;
     flex-basis: 100%;
     text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-links {
+      transition: none;
+    }
   }
 
   /* Hamburger lines animate into an X when the menu is open */
@@ -1226,6 +1716,7 @@ button:hover,
   #spa,
   #gallery,
   #testimonials,
+  #location,
   #quote-band {
     padding: var(--space-lg);
   }
@@ -1233,12 +1724,6 @@ button:hover,
   #events,
   #weddings {
     padding: var(--space-2xl) var(--space-lg);
-  }
-
-  /* --- Cards collapse to a single column --- */
-
-  .testimonials-grid {
-    grid-template-columns: 1fr;
   }
 
   /* --- Room cards become a swipeable carousel for faster scanning/booking --- */
@@ -1262,7 +1747,7 @@ button:hover,
   /* Hide the descriptive paragraph on mobile room cards so photo, price
      and the Book button are visible without extra scrolling/reading */
 
-  .room-card > p:not(.room-meta):not(.price) {
+  .room-card-body > p:not(.room-meta) {
     display: none;
   }
 
@@ -1285,15 +1770,21 @@ button:hover,
     flex-wrap: wrap;
   }
 
-  /* --- Dining and spa stack into one column --- */
+  /* --- Dining, spa and location stack into one column --- */
 
   .dining-layout,
-  .spa-grid {
+  .spa-grid,
+  .location-layout {
     grid-template-columns: 1fr;
   }
 
   .spa-large {
     height: 300px;
+  }
+
+  .map-embed,
+  .map-embed iframe {
+    min-height: 260px;
   }
 
   /* --- Gallery becomes a single column --- */
@@ -1322,14 +1813,12 @@ button:hover,
     padding: var(--space-lg);
   }
 
-  /* --- Persistent quick-booking bar --- */
+  /* --- Persistent quick-booking bar ---
+     (.mobile-book-bar's display:flex override lives just below, after
+     its full definition, so it isn't clobbered by that later rule) --- */
 
   body {
     padding-bottom: 76px;
-  }
-
-  .mobile-book-bar {
-    display: flex;
   }
 
   #back-to-top {
@@ -1377,6 +1866,12 @@ button:hover,
 .mobile-book-bar .nav-book-btn {
   display: inline-block;
   flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .mobile-book-bar {
+    display: flex;
+  }
 }
 
 /* =========================================================
@@ -1441,8 +1936,8 @@ button:hover,
   order: 2;
 }
 
-.room-detail-image {
-  min-height: 380px;
+.image-placeholder.room-detail-image {
+  height: 380px;
   border-radius: 4px;
   position: relative;
 }
@@ -1475,36 +1970,63 @@ button:hover,
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 220px;
+  grid-auto-flow: dense;
   gap: var(--space-md);
 }
 
 .full-gallery-grid .gallery-item {
-  background-size: cover;
-  background-position: center;
+  background: var(--color-placeholder);
+  position: relative;
+  overflow: hidden;
   border-radius: 4px;
   cursor: pointer;
   border: none;
   padding: 0;
-  transition: filter 0.5s ease, transform 0.3s ease, background-size 0.9s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.full-gallery-grid .gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s ease, filter 0.5s ease;
 }
 
 .full-gallery-grid .gallery-item:hover {
-  filter: brightness(0.9);
   transform: translateY(-3px);
-  background-size: 114%;
   box-shadow: 0 12px 28px rgba(0,0,0,.22);
+}
+
+.full-gallery-grid .gallery-item:hover img {
+  filter: brightness(0.9);
+  transform: scale(1.14);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .full-gallery-grid .gallery-item,
-  .full-gallery-grid .gallery-item:hover {
+  .full-gallery-grid .gallery-item img,
+  .full-gallery-grid .gallery-item:hover,
+  .full-gallery-grid .gallery-item:hover img {
     transition: none;
-    background-size: cover;
+    transform: none;
+    filter: none;
   }
 }
 
-.full-gallery-grid .gallery-item.span-2 {
+/* Shape-aware spans so each photo's own orientation drives its cell,
+   instead of a rigid grid forcing every crop to the same shape */
+
+.full-gallery-grid .gallery-item.gallery-feature {
   grid-column: span 2;
+  grid-row: span 2;
+}
+
+.full-gallery-grid .gallery-item.gallery-wide {
+  grid-column: span 2;
+}
+
+.full-gallery-grid .gallery-item.gallery-tall {
   grid-row: span 2;
 }
 
@@ -1542,6 +2064,67 @@ button:hover,
   line-height: 1;
   padding: 8px;
   cursor: pointer;
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-white);
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.lightbox-arrow:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: var(--color-accent);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 480px) {
+  .lightbox-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 19px;
+  }
+
+  .lightbox-prev {
+    left: 8px;
+  }
+
+  .lightbox-next {
+    right: 8px;
+  }
 }
 
 /* Booking form (in the #events section) */
@@ -1602,6 +2185,79 @@ button:hover,
   min-height: 14px;
 }
 
+/* Guest stepper — faster than a dropdown on mobile: two taps beat
+   opening a picker and scrolling to a number */
+
+.guest-stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.guest-stepper input {
+  text-align: center;
+  padding: 12px var(--space-sm);
+}
+
+.guest-stepper input::-webkit-outer-spin-button,
+.guest-stepper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.guest-stepper input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.stepper-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--color-white);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.stepper-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--color-accent);
+}
+
+.stepper-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Live price summary */
+
+.booking-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.booking-summary-total {
+  font-family: "Marcellus SC", serif;
+  font-size: 20px;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
 .booking-submit {
   grid-column: 1 / -1;
   justify-self: center;
@@ -1657,7 +2313,9 @@ button:hover,
     grid-auto-rows: 220px;
   }
 
-  .full-gallery-grid .gallery-item.span-2 {
+  .full-gallery-grid .gallery-item.gallery-feature,
+  .full-gallery-grid .gallery-item.gallery-wide,
+  .full-gallery-grid .gallery-item.gallery-tall {
     grid-column: span 1;
     grid-row: span 1;
   }

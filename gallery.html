@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gallery | Shoreline Harbour & Hotel</title>
+  <meta name="description" content="A visual tour of Shoreline Harbour & Hotel — rooms, dining, spa and harbour views on the Gold Coast.">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shoreline Harbour & Hotel">
+  <meta property="og:title" content="Gallery | Shoreline Harbour & Hotel">
+  <meta property="og:description" content="A visual tour of Shoreline Harbour & Hotel — rooms, dining, spa and harbour views on the Gold Coast.">
+  <meta property="og:image" content="og-image.jpg">
+  <meta property="og:url" content="gallery.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gallery | Shoreline Harbour & Hotel">
+  <meta name="twitter:description" content="A visual tour of Shoreline Harbour & Hotel — rooms, dining, spa and harbour views.">
+  <meta name="twitter:image" content="og-image.jpg">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -85,18 +103,18 @@
 
         <div class="full-gallery-grid reveal-grid">
 
-          <button class="gallery-item reveal span-2 img-gallery-2" data-full="images/gallery-aerial-beach.jpg" aria-label="Aerial view of the beach"></button>
-          <button class="gallery-item reveal room-img-deluxe" data-full="images/deluxe-king-room.jpg" aria-label="Deluxe King Room"></button>
-          <button class="gallery-item reveal img-spa-large" data-full="images/spa-poolside.jpg" aria-label="Poolside spa area"></button>
-          <button class="gallery-item reveal img-gallery-3" data-full="images/gallery-sunset-poolside.jpg" aria-label="Sunset by the poolside"></button>
-          <button class="gallery-item reveal room-img-junior" data-full="images/junior-suite-room.jpg" aria-label="Junior Suite lounge area"></button>
-          <button class="gallery-item reveal img-dining" data-full="images/dining-terrace.jpg" aria-label="Waterfront dining terrace"></button>
-          <button class="gallery-item reveal img-gallery-4 span-2" data-full="images/gallery-night-pool.jpg" aria-label="Pool at night"></button>
-          <button class="gallery-item reveal img-spa-small-1" data-full="images/spa-sunset-lounge.jpg" aria-label="Sunset spa lounge"></button>
-          <button class="gallery-item reveal room-img-penthouse" data-full="images/penthouse-suite-room.jpg" aria-label="Penthouse Suite with private terrace"></button>
-          <button class="gallery-item reveal img-gallery-1" data-full="images/gallery-resort-loungers.jpg" aria-label="Resort loungers"></button>
-          <button class="gallery-item reveal img-spa-small-2" data-full="images/spa-stingray-lagoon.jpg" aria-label="Stingray lagoon spa"></button>
-          <button class="gallery-item reveal img-gallery-5" data-full="images/gallery-bedside-lamp.jpg" aria-label="Bedside lamp detail"></button>
+          <button class="gallery-item reveal gallery-feature" data-full="images/gallery-aerial-beach.jpg" aria-label="Aerial view of the beach"><img src="images/gallery-aerial-beach.jpg" alt="Aerial view of the beach" loading="lazy" width="787" height="1400"></button>
+          <button class="gallery-item reveal gallery-wide" data-full="images/deluxe-king-room.jpg" aria-label="Deluxe King Room"><img src="images/deluxe-king-room.jpg" alt="Deluxe King Room" loading="lazy" width="1400" height="933"></button>
+          <button class="gallery-item reveal gallery-tall" data-full="images/dining-terrace.jpg" aria-label="Waterfront dining terrace"><img src="images/dining-terrace.jpg" alt="Waterfront dining terrace" loading="lazy" width="1120" height="1400"></button>
+          <button class="gallery-item reveal" data-full="images/gallery-sunset-poolside.jpg" aria-label="Sunset by the poolside"><img src="images/gallery-sunset-poolside.jpg" alt="Sunset by the poolside" loading="lazy" width="1400" height="933"></button>
+          <button class="gallery-item reveal" data-full="images/junior-suite-room.jpg" aria-label="Junior Suite lounge area"><img src="images/junior-suite-room.jpg" alt="Junior Suite lounge area" loading="lazy" width="1400" height="933"></button>
+          <button class="gallery-item reveal gallery-wide" data-full="images/spa-poolside.jpg" aria-label="Poolside spa area"><img src="images/spa-poolside.jpg" alt="Poolside spa area" loading="lazy" width="1400" height="1120"></button>
+          <button class="gallery-item reveal gallery-tall" data-full="images/gallery-resort-loungers.jpg" aria-label="Resort loungers"><img src="images/gallery-resort-loungers.jpg" alt="Resort loungers" loading="lazy" width="1120" height="1400"></button>
+          <button class="gallery-item reveal gallery-feature" data-full="images/gallery-night-pool.jpg" aria-label="Pool at night"><img src="images/gallery-night-pool.jpg" alt="Pool at night" loading="lazy" width="1400" height="935"></button>
+          <button class="gallery-item reveal" data-full="images/spa-sunset-lounge.jpg" aria-label="Sunset spa lounge"><img src="images/spa-sunset-lounge.jpg" alt="Sunset spa lounge" loading="lazy" width="1400" height="933"></button>
+          <button class="gallery-item reveal gallery-tall" data-full="images/spa-stingray-lagoon.jpg" aria-label="Stingray lagoon spa"><img src="images/spa-stingray-lagoon.jpg" alt="Stingray lagoon spa" loading="lazy" width="894" height="1400"></button>
+          <button class="gallery-item reveal" data-full="images/penthouse-suite-room.jpg" aria-label="Penthouse Suite with private terrace"><img src="images/penthouse-suite-room.jpg" alt="Penthouse Suite with private terrace" loading="lazy" width="1400" height="933"></button>
+          <button class="gallery-item reveal" data-full="images/gallery-bedside-lamp.jpg" aria-label="Bedside lamp detail"><img src="images/gallery-bedside-lamp.jpg" alt="Bedside lamp detail" loading="lazy" width="934" height="1400"></button>
 
         </div>
 
@@ -111,7 +129,10 @@
 
   <div class="lightbox-overlay" id="lightbox">
     <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous photo">‹</button>
     <img src="" alt="" id="lightbox-image">
+    <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next photo">›</button>
+    <p class="lightbox-counter" id="lightbox-counter"></p>
   </div>
 
   <footer>
